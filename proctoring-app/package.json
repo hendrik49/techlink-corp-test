@@ -1,0 +1,24 @@
+{
+  "name": "techlink-proctor",
+  "version": "1.0.0",
+  "description": "TechLink Corp lockdown browser for secure ID verification",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --win --mac --linux"
+  },
+  "author": "TechLink Corp.",
+  "license": "PROPRIETARY",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

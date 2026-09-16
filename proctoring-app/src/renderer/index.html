@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src *; frame-src https:; img-src 'self' data: blob: https:; media-src 'self' blob: mediastream:;" />
+  <title>TechLink Proctor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- System check screen -->
+    <div id="check-screen" class="screen active">
+      <div class="card">
+        <div class="logo">
+          <div class="logo-box">ID</div>
+          <div>
+            <h1>TechLink Proctor</h1>
+            <p class="subtitle">Secure Identity Verification</p>
+          </div>
+        </div>
+        <div class="spinner-container">
+          <div class="spinner"></div>
+          <p id="check-status">Running system checks...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blocked screen (shown if violations found) -->
+    <div id="blocked-screen" class="screen">
+      <div class="card card--error">
+        <div class="icon-circle icon-circle--error">&#9888;</div>
+        <h2>Verification Blocked</h2>
+        <p class="description">
+          Prohibited software was detected on your system. Please close the
+          following applications and relaunch the proctor.
+        </p>
+        <ul id="blocked-list" class="blocked-list"></ul>
+        <div id="virtual-cam-warning" class="warning-box" style="display: none">
+          <strong>Virtual cameras detected:</strong>
+          <span id="virtual-cam-names"></span>
+        </div>
+        <button class="btn btn--primary" onclick="window.location.reload()">
+          Retry
+        </button>
+      </div>
+    </div>
+
+    <!-- Ready screen -->
+    <div id="ready-screen" class="screen">
+      <div class="card">
+        <div class="icon-circle icon-circle--success">&#10003;</div>
+        <h2>System Check Passed</h2>
+        <p class="description">
+          Your system is clear. Click the button below to begin secure
+          identity verification.
+        </p>
+        <div class="checklist">
+          <div class="checklist-item"><span class="check">&#10003;</span> No prohibited software detected</div>
+          <div class="checklist-item"><span class="check">&#10003;</span> No virtual cameras detected</div>
+          <div class="checklist-item"><span class="check">&#10003;</span> Lockdown mode active</div>
+        </div>
+        <button id="start-btn" class="btn btn--primary">Begin Verification</button>
+      </div>
+    </div>
+
+    <!-- Verification webview -->
+    <div id="verify-screen" class="screen">
+      <webview id="verify-webview"
+               allowpopups="false"
+               partition="persist:proctor"
+               style="width: 100%; height: 100%;">
+      </webview>
+    </div>
+
+    <!-- Violation overlay (appears during verification if new violations detected) -->
+    <div id="violation-overlay" class="overlay">
+      <div class="card card--error">
+        <div class="icon-circle icon-circle--error">&#9888;</div>
+        <h2>Violation Detected</h2>
+        <p class="description">
+          A prohibited application was launched while verification was in progress.
+          Please close it immediately.
+        </p>
+        <ul id="violation-list" class="blocked-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
