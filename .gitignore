@@ -18,10 +18,8 @@ public/storage/source-uploads/*
 !public/storage/source-uploads/.htaccess
 
 # Environment
-.env
 
 # Editor directories and files
-.vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -35,3 +33,4 @@ public/storage/source-uploads/*
 __pycache__
 *.pyc
 .venv
+config.bat
