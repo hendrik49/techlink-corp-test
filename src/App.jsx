@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage'
 
 const VerificationPage = lazy(() => import('./verification/VerificationPage'))
 const SourcePortal = lazy(() => import('./pages/SourcePortal'))
+const Searchtxt = lazy(() => import('./pages/Searchtxt'))
+const ContactUs = lazy(() => import('./pages/ContactUs'))
 
 function RouteFallback({ label }) {
   return (
@@ -21,6 +23,22 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route
+          path="/search"
+          element={
+            <Suspense fallback={<RouteFallback label="Loading search..." />}>
+              <Searchtxt />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <Suspense fallback={<RouteFallback label="Loading contact form..." />}>
+              <ContactUs />
+            </Suspense>
+          }
+        />
         <Route
           path="/verify"
           element={

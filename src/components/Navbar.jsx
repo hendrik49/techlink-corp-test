@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X, ShieldCheck } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -59,18 +59,24 @@ export default function Navbar() {
               </a>
             ))}
             <Link
+              to="/search"
+              className="text-[13px] font-medium tracking-wide text-slate-600 hover:text-slate-900 transition-colors duration-300 uppercase"
+            >
+              Search
+            </Link>
+            <Link
               to="/verify"
               className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide text-accent hover:text-accent-light transition-colors duration-300 uppercase"
             >
               <ShieldCheck size={14} strokeWidth={1.5} />
               Verify ID
             </Link>
-            <a
-              href="#contact"
+            <Link
+              to="/contact-us"
               className="px-6 py-2.5 text-[13px] font-medium tracking-wide uppercase border border-accent/40 text-accent hover:bg-accent/5 hover:border-accent/60 transition-all duration-300"
             >
               Get in Touch
-            </a>
+            </Link>
           </div>
 
           <button
@@ -103,6 +109,13 @@ export default function Navbar() {
                 </a>
               ))}
               <Link
+                to="/search"
+                onClick={handleClick}
+                className="text-sm font-medium tracking-wide text-slate-600 hover:text-slate-900 transition-colors py-3 uppercase"
+              >
+                Search
+              </Link>
+              <Link
                 to="/verify"
                 onClick={handleClick}
                 className="inline-flex items-center gap-2 text-sm font-medium tracking-wide text-accent hover:text-accent-light transition-colors py-3 uppercase"
@@ -110,13 +123,13 @@ export default function Navbar() {
                 <ShieldCheck size={15} strokeWidth={1.5} />
                 Verify ID
               </Link>
-              <a
-                href="#contact"
+              <Link
+                to="/contact-us"
                 onClick={handleClick}
                 className="mt-4 px-6 py-3 border border-accent/40 text-accent text-sm font-medium tracking-wide text-center uppercase"
               >
                 Get in Touch
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
